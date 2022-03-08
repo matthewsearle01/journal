@@ -1,0 +1,34 @@
+{% extends "journal/base.html" %}
+{% load humanize %}
+{% block content %}
+<h2>MATT'S JOURNAL APP</h2>
+<a href="{% url 'createjournal' %}"><button class="btn btn-primary" type = "submit">Create New Resource</button></a>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Link</th>
+            <!-- <th scope="col">Date Created</th> -->
+            <th scope="col">Software</th>
+            <th scope="col">Attachment</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+            </tr>
+        </thead>
+   {% for journal in journal_list %}
+        <tbody>
+            <tr>
+                <td>{{ journal.title }}</td>
+                <td><a href="{{ journal.link }}" class="mb-1">{{ journal.link }}</a></td>
+                <!-- <td>{{ journal.date_created|naturaltime }}</td> -->
+                <td>software</td>
+                <td>attachment</td>
+                <td><a href="{% url 'updatejournal' journal.id %}" class="mb-1">Update</a></td>
+                <td><a href="{% url 'deletejournal' journal.id %}" class="mb-1">Delete</a></td>
+            </tr>
+        </tbody>
+   {% endfor %}
+    </table>
+   {% endblock %}
+</div>
