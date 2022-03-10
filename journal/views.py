@@ -15,14 +15,14 @@ class JournalListView(ListView):
 class JournalCreateView(CreateView):
     model = Journal
     template_name = 'journal/create_journal_form.html'
-    fields = ['title', 'link']
+    fields = ['title', 'link', 'tags']
     success_url = reverse_lazy('journallist')
 
 
 class JournalUpdateView(UpdateView):
     model = Journal
     template_name = 'journal/update_journal_form.html'
-    fields = ['title', 'link']
+    fields = ['title', 'link', 'tags']
     success_url = reverse_lazy('journallist')
 
 

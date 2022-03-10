@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-f4y3k-&*n04l=n4etb^ibr$n5))#ha%i9ed_djp+5ef6)kupip'
+# SECRET_KEY = 'django-insecure-f4y3k-&*n04l=n4etb^ibr$n5))#ha%i9ed_djp+5ef6)kupip'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -130,3 +130,5 @@ DJANGO_ICONS = {
         "edit": {"name": "far fa-pencil"},
     },
 }
+import django_heroku
+django_heroku.settings(locals())
