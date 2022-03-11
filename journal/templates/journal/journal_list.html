@@ -2,11 +2,11 @@
 {% load humanize %}
 {% block content %}
 <div class="d-flex flex-column align-items-center">
-    <a href="{% url 'createjournal' %}"><button class="btn btn-primary" type = "submit">Create New Resource</button></a>
+    <a href="{% url 'createjournal' %}"><button class="btn btn-primary" type="submit">Create New Resource</button></a>
 </div>
 
-<div>
-    <table class="table table-striped">
+<div class="table-responsive">
+    <table class="table table-hover">
         <thead>
             <tr>
             <th scope="col">Name</th>
@@ -21,12 +21,12 @@
    {% for journal in journal_list %}
         <tbody>
             <tr>
-                <td>{{ journal.title }}</td>
-                <td><a href="{{ journal.link }}" class="mb-1">{{ journal.link }}</a></td>
-                <td>{% for tag in journal.tags.all %}{{ tag }} / {% endfor %}</td>
+                <td class="text-info">{{ journal.title }}</td>
+                <td><a href="{{ journal.link }}" target="_blank" rel="noopener noreferrer" class="mb-1"><em>{{ journal.link }}</em></a></td>
+                <td>{% for tag in journal.tags.all %}<div class="badge rounded-pill bg-primary mx-1">{{ tag }}</div>{% endfor %}</td>
                 <td>attachment</td>
-                <td><a href="{% url 'updatejournal' journal.id %}" class="mb-1">Update</a></td>
-                <td><a href="{% url 'deletejournal' journal.id %}" class="mb-1">Delete</a></td>
+                <td><a href="{% url 'updatejournal' journal.id %}" class="mb-1">{% load static %}<div class="ms-3"><img src={% static 'images/pencil.svg' %} /></div></a></td>
+                <td><a href="{% url 'deletejournal' journal.id %}" class="mb-1"><div class="ms-3"><img src={% static 'images/trash.svg' %} /></div></a></td>
                 <td>{{ journal.date_created|naturaltime }}</td>
             </tr>
         </tbody>

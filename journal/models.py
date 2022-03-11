@@ -10,7 +10,8 @@ class Journal(models.Model):
     title = models.CharField(max_length=255, blank=False)
     link = models.URLField(max_length=255)
     date_created = models.DateTimeField(auto_now_add=True)
-    tags = TaggableManager()
+    tags = TaggableManager(help_text="")
+    # file_upload = models.FileField()
 
 
 class Meta:
