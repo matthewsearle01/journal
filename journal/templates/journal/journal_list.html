@@ -22,13 +22,11 @@
             <tr>
                 <td><a href="{{ journal.link }}" target="_blank" rel="noopener noreferrer" class="mb-1"><em>{{ journal.title }}</em></a></td>
                 <td>{% for tag in journal.tags.all %}<div class="badge rounded-pill bg-primary mx-1">{{ tag }}</div>{% endfor %}</td>
-                <!-- <td><a href="/media/{{journal.document}}" download> Download File</a></td> -->
                 {% if journal.document %}
-                <td><a href="{{ MEDIA_URL }}{{ journal.document }}" download> Download File</a></td>
+                <td><a href="{{ MEDIA_URL }}{{ journal.document }}" download>{% load static %}<div class="ms-5"><img src={% static 'images/attach.svg' %} /></div></a></td>
                 {% else %}
                 <td></td>
                 {% endif %}
-                <!-- <td><a href="{{ MEDIA_URL }}{{ journal.document }}" download> Download File</a></td> -->
                 <td><a href="{% url 'updatejournal' journal.id %}" class="mb-1">{% load static %}<div class="ms-3"><img src={% static 'images/pencil.svg' %} /></div></a></td>
                 <td><a href="{% url 'deletejournal' journal.id %}" class="mb-1"><div class="ms-3"><img src={% static 'images/trash.svg' %} /></div></a></td>
                 <td>{{ journal.date_created|naturaltime }}</td>
