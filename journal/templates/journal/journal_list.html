@@ -5,12 +5,11 @@
     <a href="{% url 'createjournal' %}"><button class="btn btn-primary" type="submit">Create New Resource</button></a>
 </div>
 
-<div class="table-responsive">
+<div class="container table-responsive mw-50 mx-auto">
     <table class="table table-hover">
         <thead>
             <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Link</th>
+            <th scope="col">Resource Link</th>
             <th scope="col">Tags</th>
             <th scope="col">Attachment</th>
             <th scope="col">Update</th>
@@ -21,10 +20,15 @@
    {% for journal in journal_list %}
         <tbody>
             <tr>
-                <td class="text-info">{{ journal.title }}</td>
-                <td><a href="{{ journal.link }}" target="_blank" rel="noopener noreferrer" class="mb-1"><em>{{ journal.link }}</em></a></td>
+                <td><a href="{{ journal.link }}" target="_blank" rel="noopener noreferrer" class="mb-1"><em>{{ journal.title }}</em></a></td>
                 <td>{% for tag in journal.tags.all %}<div class="badge rounded-pill bg-primary mx-1">{{ tag }}</div>{% endfor %}</td>
-                <td>attachment</td>
+                <!-- <td><a href="/media/{{journal.document}}" download> Download File</a></td> -->
+                {% if journal.document %}
+                <td><a href="{{ MEDIA_URL }}{{ journal.document }}" download> Download File</a></td>
+                {% else %}
+                <td></td>
+                {% endif %}
+                <!-- <td><a href="{{ MEDIA_URL }}{{ journal.document }}" download> Download File</a></td> -->
                 <td><a href="{% url 'updatejournal' journal.id %}" class="mb-1">{% load static %}<div class="ms-3"><img src={% static 'images/pencil.svg' %} /></div></a></td>
                 <td><a href="{% url 'deletejournal' journal.id %}" class="mb-1"><div class="ms-3"><img src={% static 'images/trash.svg' %} /></div></a></td>
                 <td>{{ journal.date_created|naturaltime }}</td>
