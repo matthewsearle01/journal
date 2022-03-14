@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('journal/list', views.JournalListView.as_view(), name="journallist"),
@@ -9,4 +11,5 @@ urlpatterns = [
          views.JournalUpdateView.as_view(),  name="updatejournal"),
     path('journal/journaldelete/<pk>',
          views.JournalDeleteView.as_view(),  name="deletejournal"),
+    path('tags/<slug:tag_slug>/', views.TagListView.as_view(), name='posts_by_tag'),
 ]
