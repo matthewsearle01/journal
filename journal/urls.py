@@ -11,4 +11,5 @@ urlpatterns = [
          views.JournalUpdateView.as_view(),  name="updatejournal"),
     path('journal/journaldelete/<pk>',
          views.JournalDeleteView.as_view(),  name="deletejournal"),
+    path('tags/<slug:tag_slug>/', views.TagListView.as_view(), name='posts_by_tag'),
 ]

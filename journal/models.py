@@ -9,6 +9,7 @@ class Journal(models.Model):
     title = models.CharField(max_length=255, blank=False)
     link = models.URLField(max_length=255)
     date_created = models.DateTimeField(auto_now_add=True)
+    slug = models.SlugField(max_length=100)
     tags = TaggableManager(help_text="")
     document = models.FileField(
         upload_to='documents/', null=True, blank=True)

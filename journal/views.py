@@ -3,15 +3,31 @@ from .models import Journal
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .forms import JournalForm
-from pathlib import Path
+from taggit.models import Tag
 
 # Create your views here.
 
 
-class JournalListView(ListView):
+class TagMixin(object):
+    def get_context_data(self, **kwargs):
+        context = super(TagMixin, self).get_context_data(**kwargs)
+        context['tags'] = Tag.objects.all()
+        return context
+
+
+class JournalListView(TagMixin, ListView):
     model = Journal
     template_name = "journal/journal_list.html"
     context_object_name = "journal_list"
+
+
+class TagListView(TagMixin, ListView):
+    model = Journal
+    template_name = "journal/journal_list.html"
+    context_object_name = "journal_list"
+
+    def get_queryset(self):
+        return Journal.objects.filter(tags__slug=self.kwargs.get('tag_slug'))
 
 
 class JournalCreateView(CreateView):
@@ -43,7 +59,3 @@ def upload(request):
     form = JournalForm()
     journal = Journal.objects.all()
     return render(request=request, template_name="journal_list.html", context={'form': form, 'journal': journal})
-
-# my_file = Path("/media/documents/file")
-# if my_file.is_file():
-#     show_link = True
