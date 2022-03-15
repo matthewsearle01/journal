@@ -6,7 +6,7 @@
 </div>
 
 <div class="container table-responsive mw-50 mx-auto">
-    <h3>Filter By Tag</h3>
+    <h4>Filter By Tag</h4>
     {% for tag in tags %}
         <a href="{% url 'posts_by_tag' tag.slug %}" class="badge rounded-pill bg-primary mx-1">{{tag.name}}</a>
       {% endfor %}
@@ -26,10 +26,6 @@
         <tbody>
             <tr>
                 <td><a href="{{ journal.link }}" target="_blank" rel="noopener noreferrer" class="mb-1"><em>{{ journal.title }}</em></a></td>
-                <!-- <td>{% for tag in journal.tags.all %}
-                    <div class="badge rounded-pill bg-primary mx-1">{{ tag }}</div>
-                    {% endfor %}
-                </td> -->
                 <td>{% for tag in journal.tags.all %}
                     <a href="{% url 'posts_by_tag' tag.slug %}" class="badge rounded-pill bg-primary mx-1">{{tag.name}}</a>
                     {% endfor %}
