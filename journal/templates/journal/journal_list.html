@@ -6,7 +6,7 @@
 </div>
 
 <div class="container table-responsive mw-50 mx-auto">
-    <h3>Filter By Tag</h3>
+    <h4>Filter By Tag</h4>
     {% for tag in tags %}
         <a href="{% url 'posts_by_tag' tag.slug %}" class="badge rounded-pill bg-primary mx-1">{{tag.name}}</a>
       {% endfor %}
